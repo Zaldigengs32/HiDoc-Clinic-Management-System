@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ProgressBar?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+
+<AnchorPane prefHeight="1080.0" prefWidth="1920.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Interface.LoadingController">
+
+    <ImageView fx:id="backgroundImage" pickOnBounds="true" smooth="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+
+    <StackPane AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+
+        <!-- VBox diposisikan sedikit ke bawah -->
+        <VBox alignment="CENTER" spacing="25.0" translateY="250">
+
+            <!-- Persentase -->
+            <Label fx:id="percentLabel" style="-fx-font-size: 24px; -fx-text-fill: white;" text="0%" />
+
+            <!-- Progress Bar -->
+            <ProgressBar fx:id="progressBar" prefHeight="25.0" prefWidth="700.0" progress="0.6" style="
+                -fx-accent: linear-gradient(to right, #00f2fe, #4facfe, #00f2fe);
+                -fx-background-color: rgba(20,20,20,0.5);
+                -fx-background-insets: 0;
+                -fx-background-radius: 20;
+                -fx-border-radius: 20;
+                -fx-border-color: linear-gradient(to right, #00f2fe, #4facfe);
+                -fx-border-width: 2;
+                -fx-padding: 3;
+                -fx-effect: dropshadow(gaussian, rgba(0,255,255,0.7), 10, 0.7, 0, 0);
+                -fx-text-box-border: transparent;
+                -fx-box-border: transparent;" />
+
+        </VBox>
+
+    </StackPane>
+
+</AnchorPane>

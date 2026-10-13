@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.String?>
+<?import javafx.collections.FXCollections?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+
+<StackPane prefHeight="700.0" prefWidth="1100.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Admin.Controller.DashboardDataObatController">
+
+    <!-- Background Utama -->
+    <AnchorPane style="-fx-background-color: linear-gradient(to bottom, #c1e3fe, #cfeff9);">
+
+        <!-- Kontainer Utama -->
+        <VBox spacing="25" style="-fx-background-color: rgba(255,255,255,0.6); -fx-background-radius: 25; -fx-padding: 25; -fx-border-radius: 25; -fx-border-color: rgba(255,255,255,0.3);" AnchorPane.bottomAnchor="30.0" AnchorPane.leftAnchor="30.0" AnchorPane.rightAnchor="30.0" AnchorPane.topAnchor="30.0">
+
+            <effect>
+                <DropShadow color="#c0e0ec" offsetX="0" offsetY="10" radius="20" />
+            </effect>
+
+            <!-- Bagian Header ada Search + Filter + Button -->
+            <HBox alignment="CENTER_LEFT" spacing="10">
+                <Label style="-fx-font-size: 28px; -fx-font-weight: bold; -fx-text-fill: #2c3e50;" text="💊 Data Obat" />
+                <Region HBox.hgrow="ALWAYS" />
+
+                <!-- Filter Status -->
+                <ComboBox fx:id="cbFilterStatusObat" prefHeight="35.0" prefWidth="200.0" promptText="Filter Status" style="-fx-background-radius: 12; -fx-border-radius: 12; -fx-font-size: 13px; -fx-padding: 5;">
+                    <items>
+                        <FXCollections fx:factory="observableArrayList">
+                            <String fx:value="Semua Status" />
+                            <String fx:value="Tersedia" />
+                            <String fx:value="Tidak Tersedia" />
+                        </FXCollections>
+                    </items>
+                    <cursor>
+                        <Cursor fx:constant="HAND" />
+                    </cursor>
+                </ComboBox>
+
+                <!-- Kolom Pencarian -->
+                <TextField fx:id="searchField" prefHeight="35.0" prefWidth="200.0" promptText="🔍 Cari Data Obat" style="-fx-background-radius: 12; -fx-border-radius: 12; -fx-font-size: 13px; -fx-padding: 5 10; -fx-border-color: #d0d0d0; -fx-border-width: 1; -fx-background-color: white;" />
+
+                <!-- Tombol Tambah -->
+                <Button fx:id="btnTambahObat" prefHeight="35.0" prefWidth="170.0" style="-fx-background-color: linear-gradient(to right, #27ae60, #2ecc71); -fx-text-fill: white; -fx-font-weight: bold; -fx-font-size: 14px; -fx-background-radius: 12; -fx-cursor: hand;" text="➕ Tambah Obat">
+                    <cursor>
+                        <Cursor fx:constant="HAND" />
+                    </cursor></Button>
+            </HBox>
+
+            <!-- Tabel Obat -->
+            <TableView fx:id="tabelObat" style="-fx-background-color: white; -fx-border-radius: 12; -fx-background-radius: 12; -fx-border-color: #d0d0d0;" VBox.vgrow="ALWAYS">
+                <columns>
+                    <TableColumn fx:id="colIDObat" prefWidth="90.0" text="🆔 ID Obat" />
+                    <TableColumn fx:id="colNamaObat" prefWidth="200.0" text="💊 Nama Obat" />
+                    <TableColumn fx:id="colHargaBeli" prefWidth="150.0" text="💰 Harga Beli" />
+                    <TableColumn fx:id="colHargaJual" prefWidth="150.0" text="💵 Harga Jual" />
+                    <TableColumn fx:id="colStok" prefWidth="120.0" text="📦 Stok" />
+                    <TableColumn fx:id="colNamaKategori" prefWidth="150.0" text="🏷 Kategori" />
+                    <TableColumn fx:id="colStatusObat" prefWidth="150.0" text="📌 Status" />
+                    <TableColumn fx:id="colAksi" prefWidth="100.0" text="⚙ Aksi" />
+                </columns>
+                <cursor>
+                    <Cursor fx:constant="HAND" />
+                </cursor>
+            </TableView>
+        </VBox>
+    </AnchorPane>
+
+    <!-- Modal Form Overlay -->
+    <VBox fx:id="formPopup" alignment="CENTER" managed="false" style="-fx-background-color: rgba(0,0,0,0.6);" visible="false" StackPane.alignment="CENTER">
+
+        <!-- Form Container -->
+        <VBox alignment="CENTER" maxWidth="900" spacing="20" style="-fx-background-color: linear-gradient(to bottom, #ffffff, #f8f9fa); -fx-padding: 35; -fx-border-radius: 25; -fx-background-radius: 25; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.4), 20, 0.6, 0, 8);">
+
+            <!-- Form Header with Close Button -->
+            <HBox alignment="CENTER" spacing="0" style="-fx-padding: 0 0 15 0;">
+                <Region HBox.hgrow="ALWAYS" />
+                <!-- Form Title -->
+                <Label fx:id="formTitle" style="-fx-font-size: 26px; -fx-font-weight: bold; -fx-text-fill: linear-gradient(to right, #2c3e50, #34495e);" text="💊 Form Data Obat" />
+                <Region HBox.hgrow="ALWAYS" />
+                <!-- Close Button -->
+                <Button fx:id="btnCloseForm" onAction="#tutupForm" prefHeight="40.0" prefWidth="44.0"
+                        style="-fx-background-color: #e74c3c; -fx-text-fill: white; -fx-font-weight: bold; -fx-font-size: 18px; -fx-background-radius: 15; -fx-cursor: hand; -fx-effect: dropshadow(gaussian, rgba(231,76,60,0.4), 5, 0.3, 0, 2);"
+                        text="✕">
+                    <cursor>
+                        <Cursor fx:constant="HAND" />
+                    </cursor>
+                </Button>
+            </HBox>
+
+            <!-- Form Fields Container -->
+            <VBox prefHeight="249.0" prefWidth="851.0" spacing="20" style="-fx-padding: 15;">
+
+                <!-- First Row: ID and Nama Obat -->
+                <HBox alignment="CENTER" spacing="25">
+                    <!-- ID Field (Auto Generate) -->
+                    <VBox prefWidth="400" spacing="8">
+                        <Label style="-fx-font-size: 15px; -fx-font-weight: bold; -fx-text-fill: #2c3e50;" text="🆔 ID Obat:" />
+                        <TextField fx:id="tfIDObat" editable="false" prefHeight="48" prefWidth="400" style="-fx-background-color: linear-gradient(to bottom, #caeaf7, #caeaf7); -fx-border-color: #3498db; -fx-border-width: 2; -fx-border-radius: 12; -fx-background-radius: 12; -fx-padding: 12; -fx-font-size: 14px; -fx-text-fill: #000000; -fx-font-weight: bold;" text="" />
+                    </VBox>
+
+                    <!-- Nama Obat Field -->
+                    <VBox prefWidth="400" spacing="8">
+                        <Label style="-fx-font-size: 15px; -fx-font-weight: bold; -fx-text-fill: #2c3e50;" text="💊 Nama Obat:" />
+                        <TextField fx:id="tfNamaObat" promptText="Masukkan nama obat" style="-fx-border-color: #3498db; -fx-border-width: 2; -fx-border-radius: 12; -fx-background-radius: 12; -fx-padding: 12; -fx-font-size: 14px; -fx-background-color: white;" />
+                    </VBox>
+                </HBox>
+
+                <!-- Second Row: Harga Beli and Harga Jual -->
+                <HBox alignment="CENTER" prefHeight="80.0" prefWidth="856.0" spacing="25">
+                    <!-- Harga Beli Field -->
+                    <VBox maxWidth="1500.0" prefHeight="80.0" prefWidth="814.0" spacing="8">
+                        <children>
+                            <Label style="-fx-font-size: 15px; -fx-font-weight: bold; -fx-text-fill: #2c3e50;" text="🏷 Kategori Obat:" />
+                            <ComboBox fx:id="cbKategori" maxWidth="1276.0" minWidth="748.0" prefHeight="50.0" prefWidth="823.0" promptText="Pilih kategori obat" style="-fx-border-color: #3498db; -fx-border-width: 2; -fx-border-radius: 12; -fx-background-radius: 12; -fx-padding: 8; -fx-font-size: 14px; -fx-background-color: white;" />
+                        </children>
+                    </VBox>
+                </HBox>
+
+                <!-- Third Row: Stok and Kategori -->
+                <HBox alignment="CENTER" spacing="25">
+                    <!-- Stok Field -->
+                    <VBox prefWidth="400" spacing="8" />
+
+                    <!-- Kategori ComboBox -->
+                    <VBox prefWidth="400" spacing="8" />
+                </HBox>
+
+                <!-- Fourth Row: Supplier and Status -->
+                <HBox alignment="CENTER" spacing="25">
+                    <!-- Supplier ComboBox -->
+                    <VBox prefWidth="400" spacing="8" />
+
+                    <!-- Status Field (Display only) -->
+                    <VBox prefWidth="400" spacing="8" />
+                </HBox>
+            </VBox>
+
+            <!-- Action Buttons -->
+            <HBox alignment="CENTER" prefHeight="78.0" prefWidth="830.0" spacing="25" style="-fx-padding: 20 0 0 0;">
+                <Button fx:id="btnSimpan" prefHeight="50" prefWidth="150"
+                        style="-fx-background-color: linear-gradient(to right, #27ae60, #2ecc71); -fx-text-fill: white; -fx-font-weight: bold; -fx-font-size: 16px; -fx-background-radius: 15; -fx-cursor: hand; -fx-effect: dropshadow(gaussian, rgba(39,174,96,0.4), 8, 0.3, 0, 3);"
+                        text="💾 Simpan">
+                    <cursor>
+                        <Cursor fx:constant="HAND" />
+                    </cursor>
+                </Button>
+
+                <Button fx:id="btnBatal" prefHeight="50" prefWidth="150"
+                        style="-fx-background-color: linear-gradient(to right, #f39c12, #e67e22); -fx-text-fill: white; -fx-font-weight: bold; -fx-font-size: 16px; -fx-background-radius: 15; -fx-cursor: hand; -fx-effect: dropshadow(gaussian, rgba(243,156,18,0.4), 8, 0.3, 0, 3);"
+                        text="🔄 Batal">
+                    <cursor>
+                        <Cursor fx:constant="HAND" />
+                    </cursor>
+                </Button>
+            </HBox>
+        </VBox>
+    </VBox>
+
+</StackPane>

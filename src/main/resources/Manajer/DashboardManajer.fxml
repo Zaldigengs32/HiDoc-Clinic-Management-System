@@ -1,0 +1,376 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="800.0" prefWidth="1400.0" style="-fx-background-color: linear-gradient(from 0% 0% to 100% 100%, #667eea 0%, #764ba2 100%);" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Manajer.Controller.DashboardManajerController">
+    <children>
+
+        <!-- Main Container -->
+        <HBox prefHeight="800.0" prefWidth="1400.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <children>
+
+                <!-- SIDEBAR -->
+                <VBox prefHeight="800.0" prefWidth="300.0" style="-fx-background-color: linear-gradient(from 0% 0% to 0% 100%, #011d73 0%, #004db9 50%, #60a8f6 100%); -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.3), 10, 0, 5, 0);">
+                    <children>
+
+                        <!-- Logo Section -->
+                        <HBox alignment="CENTER" prefHeight="102.0" prefWidth="300.0" style="-fx-padding: 25 25 25 30; -fx-border-color: rgba(255,255,255,0.1); -fx-border-width: 0 0 1 0;">
+                            <children>
+                                <StackPane prefHeight="50.0" prefWidth="50.0">
+                                    <children>
+                                        <Rectangle arcHeight="15.0" arcWidth="15.0" fill="linear-gradient(from 0% 0% to 100% 100%, #60a5fa, #3b82f6)" height="50.0" width="50.0">
+                                            <effect>
+                                                <DropShadow color="rgba(0,0,0,0.3)" height="20.0" radius="9.5" width="20.0" />
+                                            </effect>
+                                        </Rectangle>
+                                        <Label text="🏠" textAlignment="CENTER" textFill="WHITE">
+                                            <font>
+                                                <Font size="24.0" />
+                                            </font>
+                                        </Label>
+                                    </children>
+                                </StackPane>
+                                <Label text="HiDoc" textAlignment="CENTER" textFill="WHITE">
+                                    <font>
+                                        <Font name="System Bold" size="28.0" />
+                                    </font>
+                                    <HBox.margin>
+                                        <Insets left="15.0" />
+                                    </HBox.margin>
+                                    <effect>
+                                        <DropShadow color="rgba(0,0,0,0.3)" height="10.0" radius="4.5" width="10.0" />
+                                    </effect>
+                                </Label>
+                            </children>
+                        </HBox>
+
+                        <!-- Menu Section -->
+                        <VBox style="-fx-padding: 30 20 0 20; -fx-spacing: 10;">
+                            <children>
+
+                                <!-- Beranda -->
+                                <Button fx:id="btnBeranda" alignment="CENTER_LEFT" onAction="#handleBeranda" prefHeight="60.0" prefWidth="260.0" style="-fx-background-color: rgba(255,255,255,0.2); -fx-text-fill: white; -fx-font-size: 16px; -fx-font-weight: bold; -fx-background-radius: 15; -fx-border-radius: 15; -fx-cursor: hand;" text="🏠  Beranda">
+                                    <font>
+                                        <Font name="System Bold" size="16.0" />
+                                    </font>
+                                    <effect>
+                                        <DropShadow color="rgba(0,0,0,0.2)" height="8.0" radius="3.5" width="8.0" />
+                                    </effect>
+                                    <padding>
+                                        <Insets left="45.0" />
+                                    </padding>
+                                    <cursor>
+                                        <Cursor fx:constant="HAND" />
+                                    </cursor>
+                                </Button>
+
+                                <!-- Laporan Penjualan Obat -->
+                                <Button fx:id="btnLaporanPenjualan" alignment="CENTER_LEFT" onAction="#handleLaporanPenjualan" prefHeight="60.0" prefWidth="260.0" style="-fx-background-color: transparent; -fx-text-fill: rgba(255,255,255,0.9); -fx-font-size: 16px; -fx-background-radius: 15; -fx-border-radius: 15; -fx-cursor: hand;" text="💊  Laporan Penjualan">
+                                    <font>
+                                        <Font size="16.0" />
+                                    </font>
+                                    <padding>
+                                        <Insets left="45.0" />
+                                    </padding>
+                                    <cursor>
+                                        <Cursor fx:constant="HAND" />
+                                    </cursor>
+                                </Button>
+
+                                <!-- Laporan Pengadaan Obat -->
+                                <Button fx:id="btnLaporanPengadaan" alignment="CENTER_LEFT" onAction="#handleLaporanPengadaan" prefHeight="60.0" prefWidth="260.0" style="-fx-background-color: transparent; -fx-text-fill: rgba(255,255,255,0.9); -fx-font-size: 16px; -fx-background-radius: 15; -fx-border-radius: 15; -fx-cursor: hand;" text="🏢  Laporan Pengadaan">
+                                    <font>
+                                        <Font size="16.0" />
+                                    </font>
+                                    <padding>
+                                        <Insets left="45.0" />
+                                    </padding>
+                                    <cursor>
+                                        <Cursor fx:constant="HAND" />
+                                    </cursor>
+                                </Button>
+
+                                <!-- Laporan Cek Kesehatan -->
+                                <Button fx:id="btnLaporanCekKesehatan" alignment="CENTER_LEFT" onAction="#handleLaporanCekKesehatan" prefHeight="60.0" prefWidth="260.0" style="-fx-background-color: transparent; -fx-text-fill: rgba(255,255,255,0.9); -fx-font-size: 16px; -fx-background-radius: 15; -fx-border-radius: 15; -fx-cursor: hand;" text="🏥  Laporan Cek Kesehatan">
+                                    <font>
+                                        <Font size="16.0" />
+                                    </font>
+                                    <padding>
+                                        <Insets left="45.0" />
+                                    </padding>
+                                    <cursor>
+                                        <Cursor fx:constant="HAND" />
+                                    </cursor>
+                                </Button>
+
+                            </children>
+                        </VBox>
+
+                        <!-- Bottom Section -->
+                        <VBox alignment="BOTTOM_LEFT" style="-fx-padding: 0 30 30 30; -fx-spacing: 8;" VBox.vgrow="ALWAYS">
+                            <children>
+                                <!-- Tombol Keluar -->
+                                <Button fx:id="btnKeluar" alignment="CENTER" onAction="#handleKeluar" prefHeight="60.0" prefWidth="240.0" style="-fx-background-color: linear-gradient(from 0% 0% to 100% 100%, #ef4444, #dc2626); -fx-text-fill: white; -fx-font-size: 16px; -fx-font-weight: bold; -fx-background-radius: 15; -fx-border-radius: 15; -fx-cursor: hand; -fx-border-color: rgba(255,255,255,0.2); -fx-border-width: 1;" text="🚪  Keluar">
+                                    <font>
+                                        <Font name="System Bold" size="16.0" />
+                                    </font>
+                                    <effect>
+                                        <DropShadow color="rgba(239,68,68,0.4)" height="12.0" radius="5.5" width="12.0" />
+                                    </effect>
+                                    <cursor>
+                                        <Cursor fx:constant="HAND" />
+                                    </cursor>
+                                </Button>
+                            </children>
+                        </VBox>
+                    </children>
+                </VBox>
+
+                <!-- MAIN CONTENT AREA -->
+                <VBox prefHeight="800.0" prefWidth="1100.0" HBox.hgrow="ALWAYS">
+                    <children>
+
+                        <!-- HEADER -->
+                        <HBox alignment="CENTER" prefHeight="102.0" prefWidth="1100.0" style="-fx-background-color: rgba(255,255,255,0.95); -fx-border-color: rgba(226,232,240,0.8); -fx-border-width: 0 0 1 0; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 8, 0, 0, 4);">
+                            <children>
+
+                                <!-- Page Title -->
+                                <Label fx:id="pageTitle" text="Dashboard Manajer" textFill="#1e293b">
+                                    <font>
+                                        <Font name="System Bold" size="32.0" />
+                                    </font>
+                                    <HBox.margin>
+                                        <Insets left="40.0" />
+                                    </HBox.margin>
+                                    <effect>
+                                        <DropShadow color="rgba(0,0,0,0.1)" height="8.0" radius="3.5" width="8.0" />
+                                    </effect>
+                                </Label>
+
+                                <!-- Spacer -->
+                                <Region HBox.hgrow="ALWAYS" />
+
+                                <!-- User Profile Section -->
+                                <HBox alignment="CENTER_RIGHT" spacing="20.0">
+                                    <children>
+
+                                        <!-- Login Time Info -->
+                                        <VBox alignment="CENTER_RIGHT" spacing="2.0">
+                                            <children>
+                                                <Label fx:id="loginTimeLabel" text="Login: 14:30 WIB" textFill="#64748b">
+                                                    <font>
+                                                        <Font name="System Bold" size="12.0" />
+                                                    </font>
+                                                </Label>
+                                                <Label fx:id="loginDateLabel" text="15 Juni 2025" textFill="#64748b">
+                                                    <font>
+                                                        <Font size="11.0" />
+                                                    </font>
+                                                </Label>
+                                            </children>
+                                        </VBox>
+
+                                        <!-- Profile Avatar & Info -->
+                                        <HBox alignment="CENTER" maxHeight="60.0" minHeight="40.0" prefHeight="40.0" prefWidth="300.0" spacing="15.0" style="-fx-background-color: linear-gradient(from 0% 0% to 100% 100%, #3b82f6, #1e40af); -fx-background-radius: 25; -fx-border-radius: 25; -fx-cursor: hand; -fx-padding: 12 24 12 12;">
+                                            <children>
+
+                                                <!-- Avatar Circle with Initial -->
+                                                <StackPane prefHeight="47.0" prefWidth="47.0" style="-fx-background-color: rgba(255,255,255,0.9); -fx-background-radius: 50; -fx-border-radius: 50;">
+                                                    <children>
+                                                        <Label fx:id="userInitial" text="M" textFill="#3b82f6">
+                                                            <font>
+                                                                <Font name="System Bold" size="18.0" />
+                                                            </font>
+                                                        </Label>
+                                                    </children>
+                                                    <effect>
+                                                        <DropShadow color="rgba(0,0,0,0.1)" height="4.0" radius="2.0" width="4.0" />
+                                                    </effect>
+                                                </StackPane>
+
+                                                <!-- User Info -->
+                                                <VBox alignment="CENTER_LEFT" prefHeight="38.0" prefWidth="189.0" spacing="2.0">
+                                                    <children>
+                                                        <Label fx:id="usernameLabel" prefHeight="20.0" prefWidth="203.0" text="manajer_apotek" textFill="WHITE">
+                                                            <font>
+                                                                <Font name="System Bold" size="14.0" />
+                                                            </font>
+                                                        </Label>
+                                                        <Label text="Manajer" textFill="rgba(255,255,255,0.8)">
+                                                            <font>
+                                                                <Font size="11.0" />
+                                                            </font>
+                                                        </Label>
+                                                    </children>
+                                                </VBox>
+
+                                            </children>
+                                            <effect>
+                                                <DropShadow color="rgba(59,130,246,0.3)" height="12.0" radius="6.0" width="12.0" />
+                                            </effect>
+                                        </HBox>
+
+                                    </children>
+                                    <HBox.margin>
+                                        <Insets right="40.0" />
+                                    </HBox.margin>
+                                </HBox>
+
+                            </children>
+                        </HBox>
+
+                        <!-- CONTENT AREA -->
+                        <ScrollPane fx:id="contentScrollPane" fitToHeight="true" fitToWidth="true" style="-fx-background-color: transparent; -fx-background: linear-gradient(from 0% 0% to 100% 100%, #f8fafc 0%, #e2e8f0 100%);" VBox.vgrow="ALWAYS">
+                            <content>
+                                <AnchorPane fx:id="mainContent" prefHeight="700.0" prefWidth="1100.0" style="-fx-background-color: transparent;">
+                                    <children>
+
+                                        <!-- Welcome Card -->
+                                        <VBox layoutX="40.0" layoutY="40.0" prefHeight="200.0" prefWidth="1020.0" style="-fx-background-color: rgba(255,255,255,0.9); -fx-background-radius: 20; -fx-border-radius: 20; -fx-padding: 40;" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="40.0" AnchorPane.topAnchor="40.0">
+                                            <children>
+                                                <Label text="Selamat Datang di Dashboard Manajer" textFill="#1e293b">
+                                                    <font>
+                                                        <Font name="System Bold" size="32.0" />
+                                                    </font>
+                                                    <VBox.margin>
+                                                        <Insets bottom="15.0" />
+                                                    </VBox.margin>
+                                                </Label>
+                                                <Label text="HiDoc membantu mengelola sistem manajemen apotek dengan mudah dan efisien." textFill="#64748b" wrapText="true">
+                                                    <font>
+                                                        <Font size="16.0" />
+                                                    </font>
+                                                </Label>
+                                    <Label text="Pilih menu di sebelah kiri untuk melihat laporan apotek." textFill="#64748b" wrapText="true">
+                                       <font>
+                                          <Font size="16.0" />
+                                       </font>
+                                    </Label>
+                                            </children>
+                                            <effect>
+                                                <DropShadow color="rgba(0,0,0,0.1)" height="20.0" radius="9.5" width="20.0" />
+                                            </effect>
+                                        </VBox>
+
+                                        <!-- Stats Cards -->
+                                        <HBox layoutX="40.0" layoutY="281.8" prefHeight="180.0" prefWidth="1020.0" spacing="20.0" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="40.0" AnchorPane.topAnchor="281.8">
+                                            <children>
+
+                                                <!-- Card 1: Laporan Penjualan -->
+                                                <VBox alignment="CENTER" prefHeight="180.0" prefWidth="326.0" style="-fx-background-color: rgba(255,255,255,0.9); -fx-background-radius: 15; -fx-border-radius: 15; -fx-padding: 20; -fx-cursor: hand;" HBox.hgrow="ALWAYS">
+                                                    <children>
+                                                        <Label text="💊" textFill="#3b82f6">
+                                                            <font>
+                                                                <Font size="48.0" />
+                                                            </font>
+                                                        </Label>
+                                                        <Label text="Laporan Penjualan" textAlignment="CENTER" textFill="#1e293b">
+                                                            <font>
+                                                                <Font name="System Bold" size="18.0" />
+                                                            </font>
+                                                            <VBox.margin>
+                                                                <Insets top="10.0" />
+                                                            </VBox.margin>
+                                                        </Label>
+                                                        <Label text="Monitor pendapatan dari hasil penjualan obat" textAlignment="CENTER" textFill="#64748b" wrapText="true">
+                                                            <font>
+                                                                <Font size="12.0" />
+                                                            </font>
+                                                            <VBox.margin>
+                                                                <Insets top="5.0" />
+                                                            </VBox.margin>
+                                                        </Label>
+                                                    </children>
+                                                    <effect>
+                                                        <DropShadow color="rgba(0,0,0,0.1)" height="15.0" radius="7.5" width="15.0" />
+                                                    </effect>
+                                                </VBox>
+
+                                                <!-- Card 2: Laporan Pengadaan -->
+                                                <VBox alignment="CENTER" prefHeight="180.0" prefWidth="326.0" style="-fx-background-color: rgba(255,255,255,0.9); -fx-background-radius: 15; -fx-border-radius: 15; -fx-padding: 20; -fx-cursor: hand;" HBox.hgrow="ALWAYS">
+                                                    <children>
+                                                        <Label text="🏢" textFill="#10b981">
+                                                            <font>
+                                                                <Font size="48.0" />
+                                                            </font>
+                                                        </Label>
+                                                        <Label text="Laporan Pengadaan" textAlignment="CENTER" textFill="#1e293b">
+                                                            <font>
+                                                                <Font name="System Bold" size="18.0" />
+                                                            </font>
+                                                            <VBox.margin>
+                                                                <Insets top="10.0" />
+                                                            </VBox.margin>
+                                                        </Label>
+                                                        <Label text="Monitor pengeluaran dari hasil pengadaan obat" textAlignment="CENTER" textFill="#64748b" wrapText="true">
+                                                            <font>
+                                                                <Font size="12.0" />
+                                                            </font>
+                                                            <VBox.margin>
+                                                                <Insets top="5.0" />
+                                                            </VBox.margin>
+                                                        </Label>
+                                                    </children>
+                                                    <effect>
+                                                        <DropShadow color="rgba(0,0,0,0.1)" height="15.0" radius="7.5" width="15.0" />
+                                                    </effect>
+                                                </VBox>
+
+                                                <!-- Card 3: Laporan Cek Kesehatan -->
+                                                <VBox alignment="CENTER" prefHeight="180.0" prefWidth="326.0" style="-fx-background-color: rgba(255,255,255,0.9); -fx-background-radius: 15; -fx-border-radius: 15; -fx-padding: 20; -fx-cursor: hand;" HBox.hgrow="ALWAYS">
+                                                    <children>
+                                                        <Label text="🏥" textFill="#f59e0b">
+                                                            <font>
+                                                                <Font size="48.0" />
+                                                            </font>
+                                                        </Label>
+                                                        <Label text="Laporan Cek Kesehatan" textAlignment="CENTER" textFill="#1e293b">
+                                                            <font>
+                                                                <Font name="System Bold" size="18.0" />
+                                                            </font>
+                                                            <VBox.margin>
+                                                                <Insets top="10.0" />
+                                                            </VBox.margin>
+                                                        </Label>
+                                                        <Label text="Monitor pendapatan dari hasil layanan check-up" textAlignment="CENTER" textFill="#64748b" wrapText="true">
+                                                            <font>
+                                                                <Font size="12.0" />
+                                                            </font>
+                                                            <VBox.margin>
+                                                                <Insets top="5.0" />
+                                                            </VBox.margin>
+                                                        </Label>
+                                                    </children>
+                                                    <effect>
+                                                        <DropShadow color="rgba(0,0,0,0.1)" height="15.0" radius="7.5" width="15.0" />
+                                                    </effect>
+                                                </VBox>
+
+                                            </children>
+                                        </HBox>
+
+                                    </children>
+                                </AnchorPane>
+                            </content>
+                        </ScrollPane>
+
+                    </children>
+                </VBox>
+
+            </children>
+        </HBox>
+
+    </children>
+</AnchorPane>

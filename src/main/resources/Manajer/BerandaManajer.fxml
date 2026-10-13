@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="700.0" prefWidth="1100.0" style="-fx-background-color: transparent;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Manajer.Controller.BerandaManajerController">
+    <children>
+
+        <!-- Welcome Card -->
+        <VBox fx:id="welcomeCard" layoutX="40.0" layoutY="40.0" prefHeight="200.0" prefWidth="1020.0" style="-fx-background-color: rgba(255,255,255,0.9); -fx-background-radius: 20; -fx-border-radius: 20; -fx-padding: 40;" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="40.0" AnchorPane.topAnchor="40.0">
+            <children>
+                <Label fx:id="welcomeTitle" text="Selamat Datang di Dashboard Manajer" textFill="#1e293b">
+                    <font>
+                        <Font name="System Bold" size="32.0" />
+                    </font>
+                    <VBox.margin>
+                        <Insets bottom="15.0" />
+                    </VBox.margin>
+                </Label>
+                <Label fx:id="welcomeSubtitle" text="HiDoc membantu mengelola sistem manajemen apotek dengan mudah dan efisien." textFill="#64748b" wrapText="true">
+                    <font>
+                        <Font size="16.0" />
+                    </font>
+                    <VBox.margin>
+                        <Insets bottom="10.0" />
+                    </VBox.margin>
+                </Label>
+                <Label fx:id="welcomeInstruction" text="Pilih menu di sebelah kiri untuk melihat laporan apotek." textFill="#64748b" wrapText="true">
+                    <font>
+                        <Font size="16.0" />
+                    </font>
+                    <VBox.margin>
+                        <Insets bottom="15.0" />
+                    </VBox.margin>
+                </Label>
+
+                <!-- Current Date and Time -->
+                <HBox spacing="30.0" />
+            </children>
+            <effect>
+                <DropShadow color="rgba(0,0,0,0.1)" height="20.0" radius="9.5" width="20.0" />
+            </effect>
+        </VBox>
+
+        <!-- Stats Cards -->
+        <HBox fx:id="statsCardsContainer" layoutX="40.0" layoutY="281.8" prefHeight="180.0" prefWidth="1020.0" spacing="20.0" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="40.0" AnchorPane.topAnchor="281.8">
+            <children>
+
+                <!-- Card 1: Laporan Penjualan -->
+                <VBox fx:id="cardPenjualan" alignment="CENTER" prefHeight="180.0" prefWidth="326.0" style="-fx-background-color: rgba(255,255,255,0.9); -fx-background-radius: 15; -fx-border-radius: 15; -fx-padding: 20; -fx-cursor: hand;" HBox.hgrow="ALWAYS">
+                    <children>
+                        <Label text="💊" textFill="#3b82f6">
+                            <font>
+                                <Font size="48.0" />
+                            </font>
+                        </Label>
+                        <Label text="Laporan Penjualan" textAlignment="CENTER" textFill="#1e293b">
+                            <font>
+                                <Font name="System Bold" size="18.0" />
+                            </font>
+                            <VBox.margin>
+                                <Insets top="10.0" />
+                            </VBox.margin>
+                        </Label>
+                        <Label text="Monitor pendapatan dari hasil penjualan obat" textAlignment="CENTER" textFill="#64748b" wrapText="true">
+                            <font>
+                                <Font size="12.0" />
+                            </font>
+                            <VBox.margin>
+                                <Insets top="5.0" />
+                            </VBox.margin>
+                        </Label>
+                    </children>
+                    <effect>
+                        <DropShadow color="rgba(0,0,0,0.1)" height="15.0" radius="7.5" width="15.0" />
+                    </effect>
+                </VBox>
+
+                <!-- Card 2: Laporan Pengadaan -->
+                <VBox fx:id="cardPengadaan" alignment="CENTER" prefHeight="180.0" prefWidth="326.0" style="-fx-background-color: rgba(255,255,255,0.9); -fx-background-radius: 15; -fx-border-radius: 15; -fx-padding: 20; -fx-cursor: hand;" HBox.hgrow="ALWAYS">
+                    <children>
+                        <Label text="🏢" textFill="#10b981">
+                            <font>
+                                <Font size="48.0" />
+                            </font>
+                        </Label>
+                        <Label text="Laporan Pengadaan" textAlignment="CENTER" textFill="#1e293b">
+                            <font>
+                                <Font name="System Bold" size="18.0" />
+                            </font>
+                            <VBox.margin>
+                                <Insets top="10.0" />
+                            </VBox.margin>
+                        </Label>
+                        <Label text="Monitor pengeluaran dari hasil pengadaan obat" textAlignment="CENTER" textFill="#64748b" wrapText="true">
+                            <font>
+                                <Font size="12.0" />
+                            </font>
+                            <VBox.margin>
+                                <Insets top="5.0" />
+                            </VBox.margin>
+                        </Label>
+                    </children>
+                    <effect>
+                        <DropShadow color="rgba(0,0,0,0.1)" height="15.0" radius="7.5" width="15.0" />
+                    </effect>
+                </VBox>
+
+                <!-- Card 3: Laporan Cek Kesehatan -->
+                <VBox fx:id="cardCekKesehatan" alignment="CENTER" prefHeight="180.0" prefWidth="326.0" style="-fx-background-color: rgba(255,255,255,0.9); -fx-background-radius: 15; -fx-border-radius: 15; -fx-padding: 20; -fx-cursor: hand;" HBox.hgrow="ALWAYS">
+                    <children>
+                        <Label text="🏥" textFill="#f59e0b">
+                            <font>
+                                <Font size="48.0" />
+                            </font>
+                        </Label>
+                        <Label text="Laporan Cek Kesehatan" textAlignment="CENTER" textFill="#1e293b">
+                            <font>
+                                <Font name="System Bold" size="18.0" />
+                            </font>
+                            <VBox.margin>
+                                <Insets top="10.0" />
+                            </VBox.margin>
+                        </Label>
+                        <Label text="Monitor pendapatan dari hasil layanan check-up" textAlignment="CENTER" textFill="#64748b" wrapText="true">
+                            <font>
+                                <Font size="12.0" />
+                            </font>
+                            <VBox.margin>
+                                <Insets top="5.0" />
+                            </VBox.margin>
+                        </Label>
+                    </children>
+                    <effect>
+                        <DropShadow color="rgba(0,0,0,0.1)" height="15.0" radius="7.5" width="15.0" />
+                    </effect>
+                </VBox>
+
+            </children>
+        </HBox>
+
+    </children>
+</AnchorPane>

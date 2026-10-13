@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.*?>
+
+<StackPane xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Interface.LoginController">
+
+    <!-- Layer bawah: Tampilan login (pakai AnchorPane seperti sebelumnya) -->
+    <AnchorPane>
+        <!-- Background image full screen -->
+        <ImageView fx:id="backgroundImage" fitHeight="768" fitWidth="1366" preserveRatio="false" AnchorPane.bottomAnchor="0" AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0" AnchorPane.topAnchor="0" />
+
+        <!-- Kotak login -->
+        <VBox fx:id="loginBox" alignment="CENTER" layoutX="738.0" layoutY="344.0" prefHeight="391.0" prefWidth="658.0" spacing="25"
+              style="-fx-background-radius: 25; -fx-padding: 50;">
+            <!-- Judul LOGIN -->
+            <Label fx:id="loginTitle" prefHeight="13.0" prefWidth="155.0"
+                   style="-fx-font-size: 36px; -fx-font-weight: bold; -fx-text-fill: #ffffff; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.6), 8, 0.3, 0, 3); -fx-font-family: 'Segoe UI Black'; -fx-letter-spacing: 2px;"
+                   text="L O G I N" />
+
+            <!-- TextField untuk Username -->
+            <TextField fx:id="usernameField" prefHeight="46.0" prefWidth="322.0" promptText="Username"
+                       style="-fx-background-color: rgba(255,255,255,0.8); -fx-border-color: #041a3e; -fx-border-radius: 10; -fx-background-radius: 10; -fx-padding: 12; -fx-font-size: 14; -fx-font-family: 'Segoe UI Semibold';" />
+
+            <!-- Container untuk Password Field dengan Toggle -->
+            <StackPane prefHeight="46.0" prefWidth="426.0">
+                <!-- PasswordField (disembunyikan) -->
+                <PasswordField fx:id="passwordField" prefHeight="46.0" prefWidth="426.0" promptText="Password"
+                               style="-fx-background-color: rgba(255,255,255,0.8); -fx-border-color: #041a3e; -fx-border-radius: 10; -fx-background-radius: 10; -fx-padding: 12 45 12 12; -fx-font-size: 14; -fx-font-family: 'Segoe UI Semibold';" />
+
+                <!-- TextField untuk password terlihat (tersembunyi secara default) -->
+                <TextField fx:id="passwordVisibleField" prefHeight="46.0" prefWidth="426.0" promptText="Password" visible="false"
+                           style="-fx-background-color: rgba(255,255,255,0.8); -fx-border-color: #041a3e; -fx-border-radius: 10; -fx-background-radius: 10; -fx-padding: 12 45 12 12; -fx-font-size: 14; -fx-font-family: 'Segoe UI Semibold';" />
+
+                <!-- Toggle Button dengan Icon Mata -->
+                <Button fx:id="togglePasswordButton" onAction="#togglePasswordVisibility"
+                        prefHeight="30.0" prefWidth="30.0"
+                        style="-fx-background-color: transparent; -fx-border-color: transparent; -fx-cursor: hand; -fx-font-size: 16; -fx-translate-x: -15;"
+                        text="👁" StackPane.alignment="CENTER_RIGHT" />
+            </StackPane>
+
+            <!-- Tombol LOGIN dan EXIT -->
+            <HBox alignment="BOTTOM_RIGHT" prefHeight="81.0" prefWidth="578.0" spacing="20">
+                <!-- Tombol LOGIN -->
+                <Button fx:id="loginButton" onAction="#handleLogin" prefHeight="41.0" prefWidth="114.0"
+                        style="-fx-background-color: #011d73; -fx-text-fill: white; -fx-font-size: 14; -fx-font-weight: bold; -fx-background-radius: 15; -fx-padding: 10 30; -fx-font-family: 'Segoe UI Bold'; -fx-cursor: hand;"
+                        text="LOGIN" textAlignment="RIGHT" />
+
+                <!-- Tombol EXIT -->
+                <Button fx:id="exitButton" onAction="#handleExit" prefHeight="41.0" prefWidth="114.0"
+                        style="-fx-background-color: linear-gradient(to bottom, #c20808, #c20808); -fx-text-fill: white; -fx-font-size: 14; -fx-font-weight: bold; -fx-background-radius: 15; -fx-padding: 10 30; -fx-font-family: 'Segoe UI Bold'; -fx-cursor: hand;"
+                        text="EXIT" textAlignment="RIGHT" />
+            </HBox>
+        </VBox>
+    </AnchorPane>
+
+</StackPane>

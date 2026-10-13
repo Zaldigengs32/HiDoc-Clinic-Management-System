@@ -1,0 +1,300 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<StackPane prefHeight="800.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Apoteker.Controller.DataCekKesehatanController">
+
+    <!-- Main Background -->
+    <AnchorPane style="-fx-background-color: linear-gradient(to bottom, #c1e3fe, #cfeff9);">
+
+        <!-- Main Container -->
+        <VBox spacing="25" style="-fx-background-color: rgba(255,255,255,0.6); -fx-background-radius: 25; -fx-padding: 25; -fx-border-radius: 25; -fx-border-color: rgba(255,255,255,0.3);" AnchorPane.bottomAnchor="30.0" AnchorPane.leftAnchor="30.0" AnchorPane.rightAnchor="30.0" AnchorPane.topAnchor="30.0">
+
+            <effect>
+                <DropShadow color="#c0e0ec" offsetX="0" offsetY="10" radius="20" />
+            </effect>
+
+            <!-- Header + Search + Filter + Button -->
+            <HBox alignment="CENTER_LEFT" spacing="10">
+                <Label style="-fx-font-size: 28px; -fx-font-weight: bold; -fx-text-fill: #2c3e50;" text="🏥 Transaksi Check-Up" />
+                <Region HBox.hgrow="ALWAYS" />
+
+                <DatePicker fx:id="dpTanggalFilter" prefHeight="35.0" prefWidth="200.0" promptText="Cari Data by Tanggal">
+                    <cursor>
+                        <Cursor fx:constant="HAND" />
+                    </cursor></DatePicker>
+
+                <!-- Tombol Refresh -->
+                <Button fx:id="btnRefresh" onAction="#refreshData" prefHeight="35.0" prefWidth="39.0" style="-fx-background-color: linear-gradient(to right, #3498db, #2980b9); -fx-text-fill: white; -fx-font-weight: bold; -fx-font-size: 14px; -fx-background-radius: 12; -fx-cursor: hand;" text="🔄">
+                    <cursor>
+                        <Cursor fx:constant="HAND" />
+                    </cursor></Button>
+
+                <!-- Search Field -->
+                <TextField fx:id="searchField" prefHeight="35.0" prefWidth="200.0" promptText="🔍 Cari Data Transaksi" style="-fx-background-radius: 12; -fx-border-radius: 12; -fx-font-size: 13px; -fx-padding: 5 10; -fx-border-color: #d0d0d0; -fx-border-width: 1; -fx-background-color: white;" />
+
+                <!-- Tombol Tambah -->
+                <Button fx:id="btnTambah" maxWidth="220" onAction="#tampilkanFormPenjualan" prefHeight="35.0" prefWidth="170.0" style="-fx-background-color: linear-gradient(to right, #27ae60, #2ecc71); -fx-text-fill: white; -fx-font-weight: bold; -fx-font-size: 14px; -fx-background-radius: 12; -fx-cursor: hand;" text="➕ Tambah Transaksi">
+                    <cursor>
+                        <Cursor fx:constant="HAND" />
+                    </cursor></Button>
+            </HBox>
+
+            <!-- TableView -->
+            <TableView fx:id="tabelPenjualan" style="-fx-background-color: white; -fx-border-radius: 12; -fx-background-radius: 12; -fx-border-color: #d0d0d0;" VBox.vgrow="ALWAYS">
+                <columns>
+                    <TableColumn fx:id="colIDPenjualan" prefWidth="120.0" text="🆔 ID CheckUp" />
+                    <TableColumn fx:id="colNamaKaryawan" prefWidth="200.0" text="👤 Karyawan" />
+                    <TableColumn fx:id="colNamaPasien" prefWidth="180.0" text="👨‍⚕️ Nama Pasien" />
+                    <TableColumn fx:id="colNoKTP" prefWidth="120.0" text="No. KTP" />
+                    <TableColumn fx:id="colNoTelepon" prefWidth="120.0" text="No. Telepon" />
+                    <TableColumn fx:id="colTanggalPenjualan" prefWidth="150.0" text="📅 Tanggal CheckUp" />
+                    <TableColumn fx:id="colTotalHarga" prefWidth="120.0" text="💰 Total Harga" />
+                    <TableColumn fx:id="colAksi" prefWidth="100.0" text="⚙ Aksi" />
+                </columns>
+                <cursor>
+                    <Cursor fx:constant="HAND" />
+                </cursor>
+            </TableView>
+        </VBox>
+    </AnchorPane>
+
+    <!-- Modal Form Overlay -->
+    <VBox fx:id="formPopup" alignment="CENTER" managed="false" style="-fx-background-color: rgba(0,0,0,0.6);" visible="false" StackPane.alignment="CENTER">
+
+        <!-- Form Container -->
+        <VBox alignment="CENTER" maxWidth="800.0" prefHeight="719.0" prefWidth="800.0" spacing="20" style="-fx-background-color: linear-gradient(to bottom, #ffffff, #f8f9fa); -fx-padding: 35; -fx-border-radius: 25; -fx-background-radius: 25; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.4), 20, 0.6, 0, 8);">
+
+            <!-- Form Header with Close Button -->
+            <HBox alignment="CENTER" prefHeight="29.0" prefWidth="730.0" spacing="0" style="-fx-padding: 0 0 15 0;">
+                <Region HBox.hgrow="ALWAYS" />
+                <!-- Form Title -->
+                <Label fx:id="formTitle" minHeight="50.0" style="-fx-font-size: 26px; -fx-font-weight: bold; -fx-text-fill: linear-gradient(to right, #2c3e50, #34495e);" text="📋 Form Transaksi Check-Up">
+               <HBox.margin>
+                  <Insets left="40.0" />
+               </HBox.margin></Label>
+                <Region HBox.hgrow="ALWAYS" />
+                <!-- Close Button -->
+                <Button fx:id="btnCloseForm" onAction="#tutupForm" prefHeight="40.0" prefWidth="44.0" style="-fx-background-color: #e74c3c; -fx-text-fill: white; -fx-font-weight: bold; -fx-font-size: 18px; -fx-background-radius: 15; -fx-cursor: hand; -fx-effect: dropshadow(gaussian, rgba(231,76,60,0.4), 5, 0.3, 0, 2);" text="✕">
+                    <cursor>
+                        <Cursor fx:constant="HAND" />
+                    </cursor>
+               <HBox.margin>
+                  <Insets right="20.0" />
+               </HBox.margin>
+                </Button>
+                <VBox.margin>
+                    <Insets bottom="-10.0" />
+                </VBox.margin>
+            </HBox>
+
+            <!-- Form Fields Container -->
+            <VBox prefHeight="434.0" prefWidth="730.0" spacing="20" style="-fx-padding: 15;">
+
+                <HBox spacing="20">
+                    <VBox prefWidth="250" spacing="8">
+                        <Label style="-fx-font-size: 15px; -fx-font-weight: bold; -fx-text-fill: #2c3e50;" text="🆔 ID CheckUp" />
+                        <TextField fx:id="tfIDPenjualan" editable="false" style="-fx-background-color: linear-gradient(to bottom, #caeaf7, #caeaf7); -fx-border-color: #3498db; -fx-border-width: 2; -fx-border-radius: 12; -fx-background-radius: 12; -fx-padding: 12; -fx-font-size: 14px; -fx-text-fill: #7f8c8d;" text="Auto Generate">
+                            <font>
+                                <Font name="System Bold" size="12.0" />
+                            </font></TextField>
+                    </VBox>
+                    <VBox prefWidth="250" spacing="8">
+                        <Label style="-fx-font-size: 15px; -fx-font-weight: bold; -fx-text-fill: #2c3e50;" text="👤 Karyawan" />
+                        <TextField fx:id="tfNamaKaryawan" editable="false" style="-fx-background-color: linear-gradient(to bottom, #caeaf7, #caeaf7); -fx-border-color: #3498db; -fx-border-width: 2; -fx-border-radius: 12; -fx-background-radius: 12; -fx-padding: 12; -fx-font-size: 14px; -fx-text-fill: #7f8c8d;" text="Auto dari Login">
+                            <font>
+                                <Font name="System Bold" size="12.0" />
+                            </font></TextField>
+                    </VBox>
+                    <VBox prefWidth="250" spacing="8">
+                        <Label style="-fx-font-size: 15px; -fx-font-weight: bold; -fx-text-fill: #2c3e50;" text="📅 Tanggal CheckUp" />
+                        <TextField fx:id="tfTanggalPenjualan" editable="false" style="-fx-background-color: linear-gradient(to bottom, #caeaf7, #caeaf7); -fx-border-color: #3498db; -fx-border-width: 2; -fx-border-radius: 12; -fx-background-radius: 12; -fx-padding: 12; -fx-font-size: 14px; -fx-text-fill: #7f8c8d;" text="Auto (Tanggal Sekarang)">
+                            <font>
+                                <Font name="System Bold" size="12.0" />
+                            </font></TextField>
+                    </VBox>
+                </HBox>
+
+                <HBox spacing="20">
+                    <VBox prefWidth="250" spacing="8">
+                        <Label style="-fx-font-size: 15px; -fx-font-weight: bold; -fx-text-fill: #2c3e50;" text="👨‍⚕️ Nama Pasien" />
+                        <TextField fx:id="tfNamaPasien" promptText="Masukkan nama pasien" style="-fx-background-color: white; -fx-border-color: #3498db; -fx-border-width: 2; -fx-border-radius: 12; -fx-background-radius: 12; -fx-padding: 12; -fx-font-size: 14px;" />
+                    </VBox>
+                    <VBox prefWidth="250" spacing="8">
+                        <Label style="-fx-font-size: 15px; -fx-font-weight: bold; -fx-text-fill: #2c3e50;" text="🆔 No. KTP Pasien" />
+                        <TextField fx:id="tfNoKTP" promptText="Masukkan nomor KTP" style="-fx-background-color: white; -fx-border-color: #3498db; -fx-border-width: 2; -fx-border-radius: 12; -fx-background-radius: 12; -fx-padding: 12; -fx-font-size: 14px;" />
+                    </VBox>
+                    <VBox prefWidth="250" spacing="8">
+                        <Label style="-fx-font-size: 15px; -fx-font-weight: bold; -fx-text-fill: #2c3e50;" text="📞 No. Telepon Pasien" />
+                        <TextField fx:id="tfNoTelepon" promptText="Masukkan nomor telepon" style="-fx-background-color: white; -fx-border-color: #3498db; -fx-border-width: 2; -fx-border-radius: 12; -fx-background-radius: 12; -fx-padding: 12; -fx-font-size: 14px;" />
+                    </VBox>
+                </HBox>
+
+                <!-- Third Row: Pilih Layanan dan Biaya -->
+                <HBox alignment="CENTER_LEFT" prefHeight="0.0" prefWidth="699.0" spacing="20">
+                    <VBox prefHeight="75.0" prefWidth="217.0" spacing="8">
+                        <Label style="-fx-font-size: 15px; -fx-font-weight: bold; -fx-text-fill: #2c3e50;" text="🏥 Pilih Layanan CheckUp" />
+                        <ComboBox fx:id="cbObat" minHeight="45.0" prefHeight="46.0" prefWidth="220.0" promptText="Pilih Layanan CheckUp" style="-fx-border-color: #3498db; -fx-border-width: 2; -fx-border-radius: 12; -fx-background-radius: 12; -fx-padding: 8; -fx-font-size: 14px; -fx-background-color: white;">
+                        </ComboBox>
+                    </VBox>
+
+                    <VBox prefHeight="75.0" prefWidth="222.0" spacing="8">
+                        <Label style="-fx-font-size: 15px; -fx-font-weight: bold; -fx-text-fill: #2c3e50;" text="💰 Biaya Layanan" />
+                        <TextField fx:id="tfHargaSatuan" editable="false" maxHeight="46.0" maxWidth="235.0" minHeight="45.0" minWidth="115.0" prefColumnCount="0" prefHeight="46.0" prefWidth="227.0" style="-fx-background-color: linear-gradient(to bottom, #caeaf7, #caeaf7); -fx-border-color: #3498db; -fx-border-width: 2; -fx-border-radius: 12; -fx-background-radius: 12; -fx-padding: 12; -fx-font-size: 14px; -fx-text-fill: #7f8c8d;" />
+                    </VBox>
+
+                    <Pane prefHeight="75.0" prefWidth="218.0">
+                        <Button fx:id="btnTambahKeranjang" layoutY="30.0" maxHeight="45.0" minHeight="45.0" onAction="#tambahKeKeranjang" prefHeight="45.0" prefWidth="220.0" style="-fx-background-color: linear-gradient(to right, #3498db, #2980b9); -fx-text-fill: white; -fx-font-weight: bold; -fx-font-size: 14px; -fx-background-radius: 12; -fx-cursor: hand;" text="➕ Tambah" />
+                    </Pane>
+                </HBox>
+
+                <!-- Keranjang Table -->
+                <VBox spacing="10">
+                    <TableView fx:id="tabelKeranjang" prefHeight="113.0" prefWidth="699.0" style="-fx-background-color: white; -fx-border-radius: 12; -fx-background-radius: 12; -fx-border-color: #d0d0d0;">
+                        <columns>
+                            <TableColumn fx:id="colNamaObat" prefWidth="250.0" text="🏥 Nama Layanan" />
+                            <TableColumn fx:id="colHargaSatuan" prefWidth="180.0" text="💰 Biaya Layanan" />
+                            <TableColumn fx:id="colSubTotal" prefWidth="180.0" text="💵 Subtotal" />
+                            <TableColumn fx:id="colHapus" prefWidth="100.0" text="🗑 Hapus" />
+                        </columns>
+                        <VBox.margin>
+                            <Insets bottom="-20.0" />
+                        </VBox.margin>
+                    </TableView>
+                </VBox>
+            </VBox>
+
+            <!-- Payment Section -->
+            <HBox alignment="CENTER" maxWidth="699.0" minHeight="55.0" minWidth="699.0" prefHeight="98.0" prefWidth="699.0" spacing="20" style="-fx-padding: 10 0 5 0;">
+                <VBox prefWidth="350" spacing="5">
+                    <Label style="-fx-font-size: 15px; -fx-font-weight: bold; -fx-text-fill: #2c3e50;" text="💳 Masukkan Jumlah Uang" />
+                    <TextField fx:id="tfJumlahUang" editable="true" prefHeight="44.0" prefWidth="318.0" promptText="Masukkan jumlah uang" style="-fx-background-color: white; -fx-border-color: #3498db; -fx-border-width: 2; -fx-border-radius: 12; -fx-background-radius: 12; -fx-padding: 10; -fx-font-size: 14px; -fx-text-fill: #2c3e50;" />
+                </VBox>
+
+                <VBox prefWidth="350" spacing="5">
+                    <Label style="-fx-font-size: 15px; -fx-font-weight: bold; -fx-text-fill: #2c3e50;" text="💸 Total Kembalian" />
+                    <TextField fx:id="tfKembalian" editable="false" prefHeight="44.0" prefWidth="334.0" promptText="Kembalian" style="-fx-background-color: linear-gradient(to bottom, #ecf0f1, #f8f9fa); -fx-border-color: #3498db; -fx-border-width: 2; -fx-border-radius: 12; -fx-background-radius: 12; -fx-padding: 10; -fx-font-size: 14px; -fx-text-fill: #7f8c8d;" text="Rp 0" />
+                </VBox>
+            </HBox>
+
+            <!-- Action Buttons -->
+            <HBox alignment="CENTER" maxHeight="30.0" prefHeight="30.0" prefWidth="730.0" spacing="25.0" style="-fx-padding: 20 0 0 0;">
+
+                <!-- Total -->
+                <HBox alignment="CENTER_RIGHT" prefHeight="44.0" prefWidth="330.0" spacing="10">
+                    <Label prefHeight="27.0" prefWidth="174.0" style="-fx-font-size: 18px; -fx-font-weight: bold; -fx-text-fill: #2c3e50;" text="💰 Total Belanja:" />
+                    <Label fx:id="lblTotalBelanja" prefHeight="30.0" prefWidth="173.0" style="-fx-font-size: 20px; -fx-font-weight: bold; -fx-text-fill: #27ae60;" text="Rp 0" />
+                </HBox>
+                <Button fx:id="btnSimpan" minHeight="44.0" onAction="#simpanPenjualan" prefHeight="44.0" prefWidth="159.0" style="-fx-background-color: linear-gradient(to right, #27ae60, #2ecc71); -fx-text-fill: white; -fx-font-weight: bold; -fx-font-size: 16px; -fx-background-radius: 15; -fx-cursor: hand; -fx-effect: dropshadow(gaussian, rgba(39,174,96,0.4), 8, 0.3, 0, 3);" text="💾 Simpan">
+                    <HBox.margin>
+                        <Insets />
+                    </HBox.margin>
+                </Button>
+                <Button fx:id="btnBatal" minHeight="43.0" onAction="#batalPenjualan" prefHeight="44.0" prefWidth="159.0" style="-fx-background-color: linear-gradient(to right, #f39c12, #e67e22); -fx-text-fill: white; -fx-font-weight: bold; -fx-font-size: 16px; -fx-background-radius: 15; -fx-cursor: hand; -fx-effect: dropshadow(gaussian, rgba(243,156,18,0.4), 8, 0.3, 0, 3);" text="🔄 Batal" />
+            </HBox>
+        </VBox>
+    </VBox>
+
+    <!-- Modal Detail Overlay -->
+    <VBox fx:id="detailPopup" alignment="CENTER" managed="false" style="-fx-background-color: rgba(0,0,0,0.6);" visible="false" StackPane.alignment="CENTER">
+
+        <!-- Detail Container -->
+        <VBox alignment="CENTER" maxWidth="700" spacing="20" style="-fx-background-color: linear-gradient(to bottom, #ffffff, #f8f9fa); -fx-padding: 35; -fx-border-radius: 25; -fx-background-radius: 25; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.4), 20, 0.6, 0, 8);">
+
+            <!-- Detail Title -->
+            <Label fx:id="detailTitle" style="-fx-font-size: 24px; -fx-font-weight: bold; -fx-text-fill: linear-gradient(to right, #2c3e50, #34495e); -fx-padding: 0 0 15 0;" text="📋 Detail Transaksi Check-Up" />
+
+            <!-- Detail Info -->
+            <HBox alignment="CENTER" spacing="30">
+                <Label fx:id="lblDetailID" prefHeight="26.0" prefWidth="364.0" style="-fx-font-size: 14px; -fx-font-weight: bold; -fx-text-fill: #2c3e50;" text="ID CheckUp     : ">
+                    <HBox.margin>
+                        <Insets left="30.0" />
+                    </HBox.margin>
+               <font>
+                  <Font size="10.0" />
+               </font>
+                </Label>
+                <Label fx:id="lblDetailKaryawan" prefHeight="26.0" prefWidth="336.0" style="-fx-font-size: 14px; -fx-font-weight: bold; -fx-text-fill: #2c3e50;" text="Karyawan       : ">
+               <font>
+                  <Font size="10.0" />
+               </font></Label>
+            <VBox.margin>
+               <Insets bottom="-10.0" />
+            </VBox.margin>
+            </HBox>
+
+            <!-- Detail Pasien -->
+            <HBox alignment="CENTER" spacing="30">
+                <Label fx:id="lblDetailPasien" prefHeight="26.0" prefWidth="364.0" style="-fx-font-size: 14px; -fx-font-weight: bold; -fx-text-fill: #2c3e50;" text="Nama Pasien    : ">
+                    <HBox.margin>
+                        <Insets left="30.0" />
+                    </HBox.margin>
+               <font>
+                  <Font size="10.0" />
+               </font>
+                </Label>
+                <Label fx:id="lblDetailTanggal" prefHeight="26.0" prefWidth="336.0" style="-fx-font-size: 14px; -fx-font-weight: bold; -fx-text-fill: #2c3e50;" text="Tanggal        : ">
+               <font>
+                  <Font size="10.0" />
+               </font></Label>
+            <VBox.margin>
+               <Insets bottom="-10.0" />
+            </VBox.margin>
+            </HBox>
+
+            <HBox alignment="CENTER" spacing="30">
+                <Label fx:id="lblDetailKTP" prefHeight="26.0" prefWidth="364.0" style="-fx-font-size: 14px; -fx-font-weight: bold; -fx-text-fill: #2c3e50;" text="No. KTP        : ">
+                    <HBox.margin>
+                        <Insets left="30.0" />
+                    </HBox.margin>
+               <font>
+                  <Font size="10.0" />
+               </font>
+                </Label>
+                <Label fx:id="lblDetailTelepon" prefHeight="26.0" prefWidth="336.0" style="-fx-font-size: 14px; -fx-font-weight: bold; -fx-text-fill: #2c3e50;" text="No. Telepon    : ">
+               <font>
+                  <Font size="10.0" />
+               </font></Label>
+            </HBox>
+
+            <!-- Detail Table -->
+            <VBox spacing="10">
+                <TableView fx:id="tabelDetail" prefHeight="300" style="-fx-background-color: white; -fx-border-radius: 12; -fx-background-radius: 12; -fx-border-color: #d0d0d0;">
+                    <columns>
+                        <TableColumn fx:id="colDetailNamaObat" prefWidth="300.0" text="🏥 Nama Layanan" />
+                        <TableColumn fx:id="colDetailHargaSatuan" prefWidth="200" text="💰 Harga Satuan" />
+                        <TableColumn fx:id="colDetailSubTotal" prefWidth="150" text="💵 Subtotal" />
+                    </columns>
+                </TableView>
+            </VBox>
+
+            <!-- Detail Total -->
+            <HBox alignment="CENTER_RIGHT" spacing="10">
+                <Label prefHeight="27.0" prefWidth="190.0" style="-fx-font-size: 18px; -fx-font-weight: bold; -fx-text-fill: #2c3e50;" text="💰 Total Keseluruhan:" />
+                <Label fx:id="lblDetailTotal" prefHeight="30.0" prefWidth="214.0" style="-fx-font-size: 20px; -fx-font-weight: bold; -fx-text-fill: #27ae60;" text="Rp 0">
+                    <HBox.margin>
+                        <Insets right="80.0" />
+                    </HBox.margin></Label>
+
+                <!-- Close Button -->
+                <Button fx:id="btnTutupDetail" onAction="#tutupDetail" prefHeight="40" prefWidth="120" style="-fx-background-color: linear-gradient(to right, #3498db, #2980b9); -fx-text-fill: white; -fx-font-weight: bold; -fx-font-size: 14px; -fx-background-radius: 12; -fx-cursor: hand;" text="✖ Tutup" />
+            </HBox>
+        </VBox>
+    </VBox>
+</StackPane>

@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.LineChart?>
+<?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+
+<StackPane prefHeight="700.0" prefWidth="1100.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Manajer.Controller.LaporanCekKesehatan">
+
+    <!-- Main Background -->
+    <AnchorPane style="-fx-background-color: linear-gradient(to bottom, #c1e3fe, #cfeff9);">
+
+        <!-- Main Container -->
+        <VBox spacing="25" style="-fx-background-color: rgba(255,255,255,0.6); -fx-background-radius: 25; -fx-padding: 25; -fx-border-radius: 25; -fx-border-color: rgba(255,255,255,0.3);" AnchorPane.bottomAnchor="30.0" AnchorPane.leftAnchor="30.0" AnchorPane.rightAnchor="30.0" AnchorPane.topAnchor="30.0">
+
+            <effect>
+                <DropShadow color="#c0e0ec" offsetX="0" offsetY="10" radius="20" />
+            </effect>
+
+            <!-- Header + Filter Section -->
+            <VBox prefHeight="62.0" prefWidth="986.0">
+                <!-- Main Header -->
+                <HBox alignment="CENTER_LEFT" spacing="10">
+                    <Region HBox.hgrow="ALWAYS" />
+                </HBox>
+
+                <!-- Filter Controls -->
+                <HBox alignment="CENTER_LEFT" spacing="15.0" style="-fx-background-color: rgba(255,255,255,0.8); -fx-background-radius: 15; -fx-padding: 15; -fx-border-radius: 15; -fx-border-color: rgba(255,255,255,0.5);">
+                    <effect>
+                        <DropShadow color="#e0f2f1" offsetX="0" offsetY="5" radius="10" />
+                    </effect>
+
+                    <Label style="-fx-font-size: 15px; -fx-font-weight: bold; -fx-text-fill: #2c3e50;" text="📅 Periode:">
+                  <HBox.margin>
+                     <Insets right="20.0" />
+                  </HBox.margin></Label>
+
+                    <Label style="-fx-font-size: 14px; -fx-font-weight: bold; -fx-text-fill: #34495e;" text="Dari Bulan:" />
+                    <ComboBox fx:id="comboBoxDariBulan" prefHeight="42.0" prefWidth="220.0" style="-fx-background-radius: 12; -fx-border-radius: 12; -fx-font-size: 13px; -fx-padding: 5; -fx-background-color: white; -fx-border-color: #3498db; -fx-border-width: 2;">
+                        <cursor>
+                            <Cursor fx:constant="HAND" />
+                        </cursor>
+                    </ComboBox>
+
+                    <Label style="-fx-font-size: 14px; -fx-font-weight: bold; -fx-text-fill: #34495e;" text="Sampai Bulan:" />
+                    <ComboBox fx:id="comboBoxSampaiBulan" prefHeight="35.0" prefWidth="220.0" style="-fx-background-radius: 12; -fx-border-radius: 12; -fx-font-size: 13px; -fx-padding: 5; -fx-background-color: white; -fx-border-color: #3498db; -fx-border-width: 2;">
+                        <cursor>
+                            <Cursor fx:constant="HAND" />
+                        </cursor>
+                  <HBox.margin>
+                     <Insets right="10.0" />
+                  </HBox.margin>
+                    </ComboBox>
+
+                    <Label style="-fx-font-size: 14px; -fx-font-weight: bold; -fx-text-fill: #34495e;" text="Tahun:" />
+                    <ComboBox fx:id="comboBoxTahun" prefHeight="42.0" prefWidth="220.0" style="-fx-background-radius: 12; -fx-border-radius: 12; -fx-font-size: 13px; -fx-padding: 5; -fx-background-color: white; -fx-border-color: #3498db; -fx-border-width: 2;">
+                        <cursor>
+                            <Cursor fx:constant="HAND" />
+                        </cursor>
+                    </ComboBox>
+                </HBox>
+            </VBox>
+
+            <!-- Chart Section -->
+            <VBox spacing="15" style="-fx-background-color: rgba(255,255,255,0.9); -fx-background-radius: 15; -fx-padding: 20; -fx-border-radius: 15; -fx-border-color: rgba(255,255,255,0.5);" VBox.vgrow="ALWAYS">
+                <effect>
+                    <DropShadow color="#e0f2f1" offsetX="0" offsetY="5" radius="15" />
+                </effect>
+
+                <LineChart fx:id="chartPendapatan" prefHeight="178.0" prefWidth="945.0" style="-fx-background-color: white; -fx-border-radius: 12; -fx-background-radius: 12; -fx-border-color: #d0d0d0;" title="Pendapatan Cek Kesehatan" VBox.vgrow="ALWAYS">
+                    <xAxis>
+                        <CategoryAxis label="Bulan" fx:id="xAxis" />
+                    </xAxis>
+                    <yAxis>
+                        <NumberAxis fx:id="yAxis" label="Pendapatan (Rp)" />
+                    </yAxis>
+                </LineChart>
+            </VBox>
+
+            <!-- Summary Statistics Section -->
+            <HBox prefHeight="88.0" prefWidth="986.0" spacing="20">
+                <!-- Summary Cards -->
+                <VBox spacing="10" style="-fx-background-color: linear-gradient(to bottom, #e8f8f5, #d5f4e6); -fx-background-radius: 15; -fx-padding: 20; -fx-border-radius: 15; -fx-border-color: #27ae60; -fx-border-width: 2;" HBox.hgrow="ALWAYS">
+                    <effect>
+                        <DropShadow color="#a9dfbf" offsetX="0" offsetY="5" radius="10" />
+                    </effect>
+                    <Label style="-fx-font-size: 16px; -fx-font-weight: bold; -fx-text-fill: #27ae60;" text="💰 Total Pendapatan" />
+                    <Label fx:id="labelTotalPendapatan" style="-fx-font-size: 24px; -fx-font-weight: bold; -fx-text-fill: #2c3e50;" text="Rp 0" />
+                </VBox>
+
+                <VBox spacing="10" style="-fx-background-color: linear-gradient(to bottom, #ebf3fd, #d6eaf8); -fx-background-radius: 15; -fx-padding: 20; -fx-border-radius: 15; -fx-border-color: #3498db; -fx-border-width: 2;" HBox.hgrow="ALWAYS">
+                    <effect>
+                        <DropShadow color="#aed6f1" offsetX="0" offsetY="5" radius="10" />
+                    </effect>
+                    <Label style="-fx-font-size: 16px; -fx-font-weight: bold; -fx-text-fill: #3498db;" text="📊 Rata-rata per Bulan" />
+                    <Label fx:id="labelRataRata" style="-fx-font-size: 24px; -fx-font-weight: bold; -fx-text-fill: #2c3e50;" text="Rp 0" />
+                </VBox>
+
+                <VBox spacing="10" style="-fx-background-color: linear-gradient(to bottom, #fdeaa7, #fcf3cf); -fx-background-radius: 15; -fx-padding: 20; -fx-border-radius: 15; -fx-border-color: #f39c12; -fx-border-width: 2;" HBox.hgrow="ALWAYS">
+                    <effect>
+                        <DropShadow color="#f7dc6f" offsetX="0" offsetY="5" radius="10" />
+                    </effect>
+                    <Label style="-fx-font-size: 16px; -fx-font-weight: bold; -fx-text-fill: #f39c12;" text="🏥 Jumlah Transaksi" />
+                    <Label fx:id="labelJumlahTransaksi" style="-fx-font-size: 24px; -fx-font-weight: bold; -fx-text-fill: #2c3e50;" text="0" />
+                </VBox>
+            </HBox>
+
+            <!-- Action Buttons -->
+            <HBox alignment="CENTER_RIGHT" prefHeight="70.0" prefWidth="986.0" spacing="15.0" style="-fx-padding: 10 0 0 0;">
+                <Button fx:id="btnExportPDF" prefHeight="40.0" prefWidth="150.0" style="-fx-background-color: linear-gradient(to right, #e74c3c, #c0392b); -fx-text-fill: white; -fx-font-weight: bold; -fx-font-size: 14px; -fx-background-radius: 12; -fx-cursor: hand; -fx-effect: dropshadow(gaussian, rgba(231,76,60,0.4), 8, 0.3, 0, 3);" text="📄 Export Excel">
+                    <cursor>
+                        <Cursor fx:constant="HAND" />
+                    </cursor>
+                </Button>
+
+                   <Button fx:id="btnRefresh" prefHeight="40.0" prefWidth="150.0" style="-fx-background-color: linear-gradient(to right, #3498db, #2980b9); -fx-text-fill: white; -fx-font-weight: bold; -fx-font-size: 14px; -fx-background-radius: 12; -fx-cursor: hand; -fx-effect: dropshadow(gaussian, rgba(52,152,219,0.4), 8, 0.3, 0, 3);" text="🔄 Refresh">
+                    <cursor>
+                        <Cursor fx:constant="HAND" />
+                    </cursor>
+                </Button>
+            </HBox>
+        </VBox>
+    </AnchorPane>
+</StackPane>
