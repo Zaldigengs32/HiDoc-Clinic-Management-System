@@ -1,6 +1,6 @@
 <div align="center">
 
-# 🏥 HiDoc — Sistem Informasi Manajemen Klinik
+# HiDoc — Sistem Informasi Manajemen Klinik
 
 ![Java](https://img.shields.io/badge/Java-24-ED8B00?style=for-the-badge&logo=openjdk&logoColor=white)
 ![JavaFX](https://img.shields.io/badge/JavaFX-17.0.6-1E6BA3?style=for-the-badge&logo=java&logoColor=white)
@@ -15,33 +15,33 @@
 
 ---
 
-## ✨ Fitur Unggulan
+## Fitur Unggulan
 
 | Fitur | Deskripsi |
 |-------|-----------|
-| 🔐 **Multi-Role Login** | 3 role berbeda: Admin, Apoteker, Manajer |
-| 👥 **Manajemen Karyawan** | CRUD data karyawan klinik |
-| 💊 **Manajemen Obat** | Data obat, kategori obat & supplier |
-| 🛒 **Pengadaan Obat** | Kelola pembelian obat dari supplier |
-| 💰 **Penjualan Obat** | Transaksi penjualan obat ke pasien |
-| 🩺 **Layanan Check-Up** | Data & pencatatan layanan pemeriksaan |
-| 📊 **Laporan Lengkap** | Export laporan ke PDF & Excel (iText + Apache POI) |
-| 🎵 **Background Audio** | Musik latar saat aplikasi berjalan |
-| 🔍 **Fitur Pencarian** | Search data di semua tabel |
+| **Multi-Role Login** | 3 role berbeda: Admin, Apoteker, Manajer |
+| **Manajemen Karyawan** | CRUD data karyawan klinik |
+| **Manajemen Obat** | Data obat, kategori obat & supplier |
+| **Pengadaan Obat** | Kelola pembelian obat dari supplier |
+| **Penjualan Obat** | Transaksi penjualan obat ke pasien |
+| **Layanan Check-Up** | Data & pencatatan layanan pemeriksaan |
+| **Laporan Lengkap** | Export laporan ke PDF & Excel (iText + Apache POI) |
+| **Background Audio** | Musik latar saat aplikasi berjalan |
+| **Fitur Pencarian** | Search data di semua tabel |
 
 ---
 
-## 👤 Role & Hak Akses
+## Role & Hak Akses
 
 | Role | Akses |
 |------|-------|
-| 🛡️ **Admin** | Kelola karyawan, obat, kategori obat, supplier, layanan check-up |
-| 💊 **Apoteker** | Penjualan obat, pengadaan obat, data cek kesehatan |
-| 📈 **Manajer** | Lihat laporan penjualan, pengadaan, & cek kesehatan |
+| **Admin** | Kelola karyawan, obat, kategori obat, supplier, layanan check-up |
+| **Apoteker** | Penjualan obat, pengadaan obat, data cek kesehatan |
+| **Manajer** | Lihat laporan penjualan, pengadaan, & cek kesehatan |
 
 ---
 
-## 🛠️ Tech Stack
+## Tech Stack
 
 - **Language:** Java 24
 - **UI Framework:** JavaFX 17.0.6 + FXML
@@ -53,12 +53,12 @@
 
 ---
 
-## 🔄 Alur Aplikasi
+## Alur Aplikasi
 
 ```
-🟢 Loading Screen
+Loading Screen
       ↓
-🔐 Login Screen (pilih role)
+Login Screen (pilih role)
       ↓
 ┌─────────────────────────────────┐
 │  Admin  │  Apoteker  │  Manajer │
@@ -69,7 +69,7 @@
 
 ---
 
-## 🚀 Cara Menjalankan
+## Cara Menjalankan
 
 ### Prerequisites
 - Java JDK 24+
@@ -97,7 +97,7 @@ mvn javafx:run
 
 ---
 
-## 📁 Struktur Project
+## Struktur Project
 
 ```
 HiDocProject/
